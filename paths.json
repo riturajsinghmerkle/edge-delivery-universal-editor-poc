@@ -1,6 +1,5 @@
 {
   "mappings": [
-    "/content/edge-delivery-universal-editor-poc/:/",
-    "/content/edge-delivery-universal-editor-poc/configuration:/.helix/config.json"
+    "/content/edge-delivery-universal-editor-poc/:/"
   ]
 }
