@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p139364-e1423304.adobeaemcloud.com/bin/franklin.delivery/riturajsinghmerkle/edge-delivery-universal-editor-poc/develop"
+    url: "https://author-p139364-e1423304.adobeaemcloud.com/bin/franklin.delivery/riturajsinghmerkle/edge-delivery-universal-editor-poc/main"
     type: "markup"
     suffix: ".html"
