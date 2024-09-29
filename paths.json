@@ -1,6 +1,7 @@
 {
   "mappings": [
     "/content/aem-xwalk/:/",
-    "/content/aem-xwalk/pricing:/pricing.json"
+    "/content/aem-xwalk/pricing:/pricing.json",
+    "/content/aem-xwalk/redirects:/redirects.json"
   ]
 }
