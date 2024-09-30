@@ -1,6 +1,7 @@
 {
   "mappings": [
     "/content/aem-xwalk/:/",
-    "/content/aem-xwalk/redirects:/redirects.json"
+    "/content/aem-xwalk/redirects:/redirects.json",
+    "/content/dam/celestyal/resource/csvjson.json:/csvjson.json"
   ]
 }
