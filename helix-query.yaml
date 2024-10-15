@@ -1,0 +1,925 @@
+version: 1
+
+indices:
+  site-en: &base-site
+    include:
+      - '/en/**'
+    target: /en/query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: |
+          match(attribute(el, 'content'), 'https://[^/]+(/.*)')
+      theme:
+        select: head > meta[name="theme"]
+        value: |
+          attribute(el, 'content')
+      lastModified:
+        select: head > meta[name="last-update"]
+        value: |
+          parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+  site-fr:
+    <<: *base-site
+    include:
+      - '/fr/**'
+    target: /fr/query-index.json
+
+  site-de:
+    <<: *base-site
+    include:
+      - '/de/**'
+    target: /de/query-index.json
+
+  site-es:
+    <<: *base-site
+    include:
+      - '/es/**'
+    target: /es/query-index.json
+
+  site-it:
+    <<: *base-site
+    include:
+      - '/it/**'
+    target: /it/query-index.json
+
+  site-nl:
+    <<: *base-site
+    include:
+      - '/nl/**'
+    target: /nl/query-index.json
+
+  site-pt-br:
+    <<: *base-site
+    include:
+      - '/pt-br/**'
+    target: /pt-br/query-index.json
+
+  site-ko:
+    <<: *base-site
+    include:
+      - '/ko/**'
+    target: /ko/query-index.json
+
+  site-ja:
+    <<: *base-site
+    include:
+      - '/ja/**'
+    target: /ja/query-index.json
+
+  site-sv:
+    <<: *base-site
+    include:
+      - '/sv/**'
+    target: /sv/query-index.json
+
+  site-zh-hans:
+    <<: *base-site
+    include:
+      - '/zh-hans/**'
+    target: /zh-hans/query-index.json
+
+  site-zh-hant:
+    <<: *base-site
+    include:
+      - '/zh-hant/**'
+    target: /zh-hant/query-index.json
+
+  browse-en: &base-browse
+    include:
+      - /en/browse/**
+    target: /en/browse-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      theme:
+        select: head > meta[name="theme"]
+        value: |
+          attribute(el, 'content')
+      lastModified:
+        select: head > meta[name="last-update"]
+        value: |
+          parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+
+  browse-fr:
+    <<: *base-browse
+    include:
+      - /fr/browse/**
+    target: /fr/browse-index.json
+
+  browse-de:
+    <<: *base-browse
+    include:
+      - /de/browse/**
+    target: /de/browse-index.json
+
+  browse-es:
+    <<: *base-browse
+    include:
+      - /es/browse/**
+    target: /es/browse-index.json
+
+  browse-it:
+    <<: *base-browse
+    include:
+      - /it/browse/**
+    target: /it/browse-index.json
+
+  browse-nl:
+    <<: *base-browse
+    include:
+      - /nl/browse/**
+    target: /nl/browse-index.json
+
+  browse-pt-br:
+    <<: *base-browse
+    include:
+      - /pt-br/browse/**
+    target: /pt-br/browse-index.json
+
+  browse-ko:
+    <<: *base-browse
+    include:
+      - /ko/browse/**
+    target: /ko/browse-index.json
+
+  browse-ja:
+    <<: *base-browse
+    include:
+      - /ja/browse/**
+    target: /ja/browse-index.json
+
+  browse-sv:
+    <<: *base-browse
+    include:
+      - /sv/browse/**
+    target: /sv/browse-index.json
+
+  browse-zh-hans:
+    <<: *base-browse
+    include:
+      - /zh-hans/browse/**
+    target: /zh-hans/browse-index.json
+
+  browse-zh-hant:
+    <<: *base-browse
+    include:
+      - /zh-hant/browse/**
+    target: /zh-hant/browse-index.json
+
+  perspective-en: &base-perspective
+    include:
+      - /en/perspectives/**
+    exclude:
+      - /en/perspectives/authors/**
+    target: /en/perspective-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      theme:
+        select: head > meta[name="theme"]
+        value: |
+          attribute(el, 'content')
+      lastModified:
+        select: head > meta[name="last-update"]
+        value: |
+          parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      authorBioPage:
+        select: head > meta[name="author-bio-page"]
+        value: |
+          attribute(el, 'content')
+      coveoContentType:
+        select: head > meta[name="coveo-content-type"]
+        value: |
+          attribute(el, 'content')
+      coveoSolution:
+        select: head > meta[name="coveo-solution"]
+        value: |
+          attribute(el, 'content')
+      coveoFeature:
+        select: head > meta[name="feature"]
+        value: |
+          attribute(el, 'content')
+      coveoRole:
+        select: head > meta[name="role"]
+        value: |
+          attribute(el, 'content')
+      coveoLevel:
+        select: head > meta[name="level"]
+        value: |
+          attribute(el, 'content')
+
+  perspective-fr:
+    <<: *base-perspective
+    include:
+      - /fr/perspectives/**
+    exclude:
+      - /fr/perspectives/authors/**
+    target: /fr/perspective-index.json
+
+  perspective-de:
+    <<: *base-perspective
+    include:
+      - /de/perspectives/**
+    exclude:
+      - /de/perspectives/authors/**
+    target: /de/perspective-index.json
+
+  perspective-es:
+    <<: *base-perspective
+    include:
+      - /es/perspectives/**
+    exclude:
+      - /es/perspectives/authors/**
+    target: /es/perspective-index.json
+
+  perspective-it:
+    <<: *base-perspective
+    include:
+      - /it/perspectives/**
+    exclude:
+      - /it/perspectives/authors/**
+    target: /it/perspective-index.json
+
+  perspective-nl:
+    <<: *base-perspective
+    include:
+      - /nl/perspectives/**
+    exclude:
+      - /nl/perspectives/authors/**
+    target: /nl/perspective-index.json
+
+  perspective-pt-br:
+    <<: *base-perspective
+    include:
+      - /pt-br/perspectives/**
+    exclude:
+      - /pt-br/perspectives/authors/**
+    target: /pt-br/perspective-index.json
+
+  perspective-ko:
+    <<: *base-perspective
+    include:
+      - /ko/perspectives/**
+    exclude:
+      - /ko/perspectives/authors/**
+    target: /ko/perspective-index.json
+
+  perspective-ja:
+    <<: *base-perspective
+    include:
+      - /ja/perspectives/**
+    exclude:
+      - /ja/perspectives/authors/**
+    target: /ja/perspective-index.json
+
+  perspective-sv:
+    <<: *base-perspective
+    include:
+      - /sv/perspectives/**
+    exclude:
+      - /sv/perspectives/authors/**
+    target: /sv/perspective-index.json
+
+  perspective-zh-hans:
+    <<: *base-perspective
+    include:
+      - /zh-hans/perspectives/**
+    exclude:
+      - /zh-hans/perspectives/authors/**
+    target: /zh-hans/perspective-index.json
+
+  perspective-zh-hant:
+    <<: *base-perspective
+    include:
+      - /zh-hant/perspectives/**
+    exclude:
+      - /zh-hant/perspectives/authors/**
+    target: /zh-hant/perspective-index.json
+
+  profile-en: &base-profile
+    include:
+      - /en/home/**
+    exclude:
+      - /en/home/signup-flow-modal/**
+    target: /en/profile-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      theme:
+        select: head > meta[name="theme"]
+        value: |
+          attribute(el, 'content')
+      lastModified:
+        select: head > meta[name="last-update"]
+        value: |
+          parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+
+  profile-fr:
+    <<: *base-profile
+    include:
+      - /fr/home/**
+    exclude:
+      - /fr/home/signup-flow-modal/**
+    target: /fr/profile-index.json
+
+  profile-de:
+    <<: *base-profile
+    include:
+      - /de/home/**
+    exclude:
+      - /de/home/signup-flow-modal/**
+    target: /de/profile-index.json
+
+  profile-es:
+    <<: *base-profile
+    include:
+      - /es/home/**
+    exclude:
+      - /es/home/signup-flow-modal/**
+    target: /es/profile-index.json
+
+  profile-it:
+    <<: *base-profile
+    include:
+      - /it/home/**
+    exclude:
+      - /it/home/signup-flow-modal/**
+    target: /it/profile-index.json
+
+  profile-nl:
+    <<: *base-profile
+    include:
+      - /nl/home/**
+    exclude:
+      - /nl/home/signup-flow-modal/**
+    target: /nl/profile-index.json
+
+  profile-pt-br:
+    <<: *base-profile
+    include:
+      - /pt-br/home/**
+    exclude:
+      - /pt-br/home/signup-flow-modal/**
+    target: /pt-br/profile-index.json
+
+  profile-ko:
+    <<: *base-profile
+    include:
+      - /ko/home/**
+    exclude:
+      - /ko/home/signup-flow-modal/**
+    target: /ko/profile-index.json
+
+  profile-ja:
+    <<: *base-profile
+    include:
+      - /ja/home/**
+    exclude:
+      - /ja/home/signup-flow-modal/**
+    target: /ja/profile-index.json
+
+  profile-sv:
+    <<: *base-profile
+    include:
+      - /sv/home/**
+    exclude:
+      - /sv/home/signup-flow-modal/**
+    target: /sv/profile-index.json
+
+  profile-zh-hans:
+    <<: *base-profile
+    include:
+      - /zh-hans/home/**
+    exclude:
+      - /zh-hans/home/signup-flow-modal/**
+    target: /zh-hans/profile-index.json
+
+  profile-zh-hant:
+    <<: *base-profile
+    include:
+      - /zh-hant/home/**
+    exclude:
+      - /zh-hant/home/signup-flow-modal/**
+    target: /zh-hant/profile-index.json
+
+  # Sitemap indicies, split in 2 google has a limit of 50k (and 50MB) urls per sitemap
+  sitemap-en-1: &base-sitemap-1
+    include:
+      - '/en/docs/workfront/**'
+      - '/en/docs/dynamic-media-developer-resources/**'
+      - '/en/docs/marketo/**'
+      - '/en/docs/experience-platform/**'
+      - '/en/docs/experience-manager-65/**'
+      - '/en/docs/experience-manager-64/**'
+      - '/en/docs/commerce-knowledge-base/**'
+      - '/en/docs/experience-cloud-kcs/**'
+      - '/en/docs/experience-manager-learn/**'
+      - '/en/docs/experience-manager-cloud-service/**'
+    target: /en/sitemap-index-1.json
+    properties:
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      lastModified:
+        select: head > meta[name="last-update"]
+        value: |
+          parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
+  sitemap-en-2: &base-sitemap-2
+    target: /en/sitemap-index-2.json
+    include:
+      - '/en/**'
+    exclude:
+      - '/en/docs/workfront/**'
+      - '/en/docs/dynamic-media-developer-resources/**'
+      - '/en/docs/marketo/**'
+      - '/en/docs/experience-platform/**'
+      - '/en/docs/experience-manager-65/**'
+      - '/en/docs/experience-manager-64/**'
+      - '/en/docs/commerce-knowledge-base/**'
+      - '/en/docs/experience-cloud-kcs/**'
+      - '/en/docs/experience-manager-learn/**'
+      - '/en/docs/experience-manager-cloud-service/**'
+    properties:
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      lastModified:
+        select: head > meta[name="last-update"]
+        value: |
+          parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
+  sitemap-fr-1:
+    <<: *base-sitemap-1
+    include:
+      - '/fr/docs/workfront/**'
+      - '/fr/docs/dynamic-media-developer-resources/**'
+      - '/fr/docs/marketo/**'
+      - '/fr/docs/experience-platform/**'
+      - '/fr/docs/experience-manager-65/**'
+      - '/fr/docs/experience-manager-64/**'
+      - '/fr/docs/commerce-knowledge-base/**'
+      - '/fr/docs/experience-cloud-kcs/**'
+      - '/fr/docs/experience-manager-learn/**'
+      - '/fr/docs/experience-manager-cloud-service/**'
+    target: /fr/sitemap-index-1.json
+  sitemap-fr-2:
+    <<: *base-sitemap-2
+    target: /fr/sitemap-index-2.json
+    include:
+      - '/fr/**'
+    exclude:
+      - '/fr/docs/workfront/**'
+      - '/fr/docs/dynamic-media-developer-resources/**'
+      - '/fr/docs/marketo/**'
+      - '/fr/docs/experience-platform/**'
+      - '/fr/docs/experience-manager-65/**'
+      - '/fr/docs/experience-manager-64/**'
+      - '/fr/docs/commerce-knowledge-base/**'
+      - '/fr/docs/experience-cloud-kcs/**'
+      - '/fr/docs/experience-manager-learn/**'
+      - '/fr/docs/experience-manager-cloud-service/**'
+
+  sitemap-de-1:
+    <<: *base-sitemap-1
+    include:
+      - '/de/docs/workfront/**'
+      - '/de/docs/dynamic-media-developer-resources/**'
+      - '/de/docs/marketo/**'
+      - '/de/docs/experience-platform/**'
+      - '/de/docs/experience-manager-65/**'
+      - '/de/docs/experience-manager-64/**'
+      - '/de/docs/commerce-knowledge-base/**'
+      - '/de/docs/experience-cloud-kcs/**'
+      - '/de/docs/experience-manager-learn/**'
+      - '/de/docs/experience-manager-cloud-service/**'
+    target: /de/sitemap-index-1.json
+  sitemap-de-2:
+    <<: *base-sitemap-2
+    target: /de/sitemap-index-2.json
+    include:
+      - '/de/**'
+    exclude:
+      - '/de/docs/workfront/**'
+      - '/de/docs/dynamic-media-developer-resources/**'
+      - '/de/docs/marketo/**'
+      - '/de/docs/experience-platform/**'
+      - '/de/docs/experience-manager-65/**'
+      - '/de/docs/experience-manager-64/**'
+      - '/de/docs/commerce-knowledge-base/**'
+      - '/de/docs/experience-cloud-kcs/**'
+      - '/de/docs/experience-manager-learn/**'
+      - '/de/docs/experience-manager-cloud-service/**'
+
+  sitemap-es-1:
+    <<: *base-sitemap-1
+    include:
+      - '/es/docs/workfront/**'
+      - '/es/docs/dynamic-media-developer-resources/**'
+      - '/es/docs/marketo/**'
+      - '/es/docs/experience-platform/**'
+      - '/es/docs/experience-manager-65/**'
+      - '/es/docs/experience-manager-64/**'
+      - '/es/docs/commerce-knowledge-base/**'
+      - '/es/docs/experience-cloud-kcs/**'
+      - '/es/docs/experience-manager-learn/**'
+      - '/es/docs/experience-manager-cloud-service/**'
+    target: /es/sitemap-index-1.json
+  sitemap-es-2:
+    <<: *base-sitemap-2
+    target: /es/sitemap-index-2.json
+    include:
+      - '/es/**'
+    exclude:
+      - '/es/docs/workfront/**'
+      - '/es/docs/dynamic-media-developer-resources/**'
+      - '/es/docs/marketo/**'
+      - '/es/docs/experience-platform/**'
+      - '/es/docs/experience-manager-65/**'
+      - '/es/docs/experience-manager-64/**'
+      - '/es/docs/commerce-knowledge-base/**'
+      - '/es/docs/experience-cloud-kcs/**'
+      - '/es/docs/experience-manager-learn/**'
+      - '/es/docs/experience-manager-cloud-service/**'
+
+  sitemap-it-1:
+    <<: *base-sitemap-1
+    include:
+      - '/it/docs/workfront/**'
+      - '/it/docs/dynamic-media-developer-resources/**'
+      - '/it/docs/marketo/**'
+      - '/it/docs/experience-platform/**'
+      - '/it/docs/experience-manager-65/**'
+      - '/it/docs/experience-manager-64/**'
+      - '/it/docs/commerce-knowledge-base/**'
+      - '/it/docs/experience-cloud-kcs/**'
+      - '/it/docs/experience-manager-learn/**'
+      - '/it/docs/experience-manager-cloud-service/**'
+    target: /it/sitemap-index-1.json
+  sitemap-it-2:
+    <<: *base-sitemap-2
+    target: /it/sitemap-index-2.json
+    include:
+      - '/it/**'
+    exclude:
+      - '/it/docs/workfront/**'
+      - '/it/docs/dynamic-media-developer-resources/**'
+      - '/it/docs/marketo/**'
+      - '/it/docs/experience-platform/**'
+      - '/it/docs/experience-manager-65/**'
+      - '/it/docs/experience-manager-64/**'
+      - '/it/docs/commerce-knowledge-base/**'
+      - '/it/docs/experience-cloud-kcs/**'
+      - '/it/docs/experience-manager-learn/**'
+      - '/it/docs/experience-manager-cloud-service/**'
+
+  sitemap-nl-1:
+    <<: *base-sitemap-1
+    include:
+      - '/nl/docs/workfront/**'
+      - '/nl/docs/dynamic-media-developer-resources/**'
+      - '/nl/docs/marketo/**'
+      - '/nl/docs/experience-platform/**'
+      - '/nl/docs/experience-manager-65/**'
+      - '/nl/docs/experience-manager-64/**'
+      - '/nl/docs/commerce-knowledge-base/**'
+      - '/nl/docs/experience-cloud-kcs/**'
+      - '/nl/docs/experience-manager-learn/**'
+      - '/nl/docs/experience-manager-cloud-service/**'
+    target: /nl/sitemap-index-1.json
+  sitemap-nl-2:
+    <<: *base-sitemap-2
+    target: /nl/sitemap-index-2.json
+    include:
+      - '/nl/**'
+    exclude:
+      - '/nl/docs/workfront/**'
+      - '/nl/docs/dynamic-media-developer-resources/**'
+      - '/nl/docs/marketo/**'
+      - '/nl/docs/experience-platform/**'
+      - '/nl/docs/experience-manager-65/**'
+      - '/nl/docs/experience-manager-64/**'
+      - '/nl/docs/commerce-knowledge-base/**'
+      - '/nl/docs/experience-cloud-kcs/**'
+      - '/nl/docs/experience-manager-learn/**'
+      - '/nl/docs/experience-manager-cloud-service/**'
+
+  sitemap-pt-br-1:
+    <<: *base-sitemap-1
+    include:
+      - '/pt-br/docs/workfront/**'
+      - '/pt-br/docs/dynamic-media-developer-resources/**'
+      - '/pt-br/docs/marketo/**'
+      - '/pt-br/docs/experience-platform/**'
+      - '/pt-br/docs/experience-manager-65/**'
+      - '/pt-br/docs/experience-manager-64/**'
+      - '/pt-br/docs/commerce-knowledge-base/**'
+      - '/pt-br/docs/experience-cloud-kcs/**'
+      - '/pt-br/docs/experience-manager-learn/**'
+      - '/pt-br/docs/experience-manager-cloud-service/**'
+    target: /pt-br/sitemap-index-1.json
+  sitemap-pt-br-2:
+    <<: *base-sitemap-2
+    target: /pt-br/sitemap-index-2.json
+    include:
+      - '/pt-br/**'
+    exclude:
+      - '/pt-br/docs/workfront/**'
+      - '/pt-br/docs/dynamic-media-developer-resources/**'
+      - '/pt-br/docs/marketo/**'
+      - '/pt-br/docs/experience-platform/**'
+      - '/pt-br/docs/experience-manager-65/**'
+      - '/pt-br/docs/experience-manager-64/**'
+      - '/pt-br/docs/commerce-knowledge-base/**'
+      - '/pt-br/docs/experience-cloud-kcs/**'
+      - '/pt-br/docs/experience-manager-learn/**'
+      - '/pt-br/docs/experience-manager-cloud-service/**'
+
+  sitemap-ko-1:
+    <<: *base-sitemap-1
+    include:
+      - '/ko/docs/workfront/**'
+      - '/ko/docs/dynamic-media-developer-resources/**'
+      - '/ko/docs/marketo/**'
+      - '/ko/docs/experience-platform/**'
+      - '/ko/docs/experience-manager-65/**'
+      - '/ko/docs/experience-manager-64/**'
+      - '/ko/docs/commerce-knowledge-base/**'
+      - '/ko/docs/experience-cloud-kcs/**'
+      - '/ko/docs/experience-manager-learn/**'
+      - '/ko/docs/experience-manager-cloud-service/**'
+    target: /ko/sitemap-index-1.json
+  sitemap-ko-2:
+    <<: *base-sitemap-2
+    target: /ko/sitemap-index-2.json
+    include:
+      - '/ko/**'
+    exclude:
+      - '/ko/docs/workfront/**'
+      - '/ko/docs/dynamic-media-developer-resources/**'
+      - '/ko/docs/marketo/**'
+      - '/ko/docs/experience-platform/**'
+      - '/ko/docs/experience-manager-65/**'
+      - '/ko/docs/experience-manager-64/**'
+      - '/ko/docs/commerce-knowledge-base/**'
+      - '/ko/docs/experience-cloud-kcs/**'
+      - '/ko/docs/experience-manager-learn/**'
+      - '/ko/docs/experience-manager-cloud-service/**'
+
+  sitemap-ja-1:
+    <<: *base-sitemap-1
+    include:
+      - '/ja/docs/workfront/**'
+      - '/ja/docs/dynamic-media-developer-resources/**'
+      - '/ja/docs/marketo/**'
+      - '/ja/docs/experience-platform/**'
+      - '/ja/docs/experience-manager-65/**'
+      - '/ja/docs/experience-manager-64/**'
+      - '/ja/docs/commerce-knowledge-base/**'
+      - '/ja/docs/experience-cloud-kcs/**'
+      - '/ja/docs/experience-manager-learn/**'
+      - '/ja/docs/experience-manager-cloud-service/**'
+    target: /ja/sitemap-index-1.json
+  sitemap-ja-2:
+    <<: *base-sitemap-2
+    target: /ja/sitemap-index-2.json
+    include:
+      - '/ja/**'
+    exclude:
+      - '/ja/docs/workfront/**'
+      - '/ja/docs/dynamic-media-developer-resources/**'
+      - '/ja/docs/marketo/**'
+      - '/ja/docs/experience-platform/**'
+      - '/ja/docs/experience-manager-65/**'
+      - '/ja/docs/experience-manager-64/**'
+      - '/ja/docs/commerce-knowledge-base/**'
+      - '/ja/docs/experience-cloud-kcs/**'
+      - '/ja/docs/experience-manager-learn/**'
+      - '/ja/docs/experience-manager-cloud-service/**'
+
+  sitemap-sv-1:
+    <<: *base-sitemap-1
+    include:
+      - '/sv/docs/workfront/**'
+      - '/sv/docs/dynamic-media-developer-resources/**'
+      - '/sv/docs/marketo/**'
+      - '/sv/docs/experience-platform/**'
+      - '/sv/docs/experience-manager-65/**'
+      - '/sv/docs/experience-manager-64/**'
+      - '/sv/docs/commerce-knowledge-base/**'
+      - '/sv/docs/experience-cloud-kcs/**'
+      - '/sv/docs/experience-manager-learn/**'
+      - '/sv/docs/experience-manager-cloud-service/**'
+    target: /sv/sitemap-index-1.json
+  sitemap-sv-2:
+    <<: *base-sitemap-2
+    target: /sv/sitemap-index-2.json
+    include:
+      - '/sv/**'
+    exclude:
+      - '/sv/docs/workfront/**'
+      - '/sv/docs/dynamic-media-developer-resources/**'
+      - '/sv/docs/marketo/**'
+      - '/sv/docs/experience-platform/**'
+      - '/sv/docs/experience-manager-65/**'
+      - '/sv/docs/experience-manager-64/**'
+      - '/sv/docs/commerce-knowledge-base/**'
+      - '/sv/docs/experience-cloud-kcs/**'
+      - '/sv/docs/experience-manager-learn/**'
+      - '/sv/docs/experience-manager-cloud-service/**'
+
+  sitemap-zh-hans-1:
+    <<: *base-sitemap-1
+    include:
+      - '/zh-hans/docs/workfront/**'
+      - '/zh-hans/docs/dynamic-media-developer-resources/**'
+      - '/zh-hans/docs/marketo/**'
+      - '/zh-hans/docs/experience-platform/**'
+      - '/zh-hans/docs/experience-manager-65/**'
+      - '/zh-hans/docs/experience-manager-64/**'
+      - '/zh-hans/docs/commerce-knowledge-base/**'
+      - '/zh-hans/docs/experience-cloud-kcs/**'
+      - '/zh-hans/docs/experience-manager-learn/**'
+      - '/zh-hans/docs/experience-manager-cloud-service/**'
+    target: /zh-hans/sitemap-index-1.json
+  sitemap-zh-hans-2:
+    <<: *base-sitemap-2
+    target: /zh-hans/sitemap-index-2.json
+    include:
+      - '/zh-hans/**'
+    exclude:
+      - '/zh-hans/docs/workfront/**'
+      - '/zh-hans/docs/dynamic-media-developer-resources/**'
+      - '/zh-hans/docs/marketo/**'
+      - '/zh-hans/docs/experience-platform/**'
+      - '/zh-hans/docs/experience-manager-65/**'
+      - '/zh-hans/docs/experience-manager-64/**'
+      - '/zh-hans/docs/commerce-knowledge-base/**'
+      - '/zh-hans/docs/experience-cloud-kcs/**'
+      - '/zh-hans/docs/experience-manager-learn/**'
+      - '/zh-hans/docs/experience-manager-cloud-service/**'
+
+  sitemap-zh-hant-1:
+    <<: *base-sitemap-1
+    include:
+      - '/zh-hant/docs/workfront/**'
+      - '/zh-hant/docs/dynamic-media-developer-resources/**'
+      - '/zh-hant/docs/marketo/**'
+      - '/zh-hant/docs/experience-platform/**'
+      - '/zh-hant/docs/experience-manager-65/**'
+      - '/zh-hant/docs/experience-manager-64/**'
+      - '/zh-hant/docs/commerce-knowledge-base/**'
+      - '/zh-hant/docs/experience-cloud-kcs/**'
+      - '/zh-hant/docs/experience-manager-learn/**'
+      - '/zh-hant/docs/experience-manager-cloud-service/**'
+    target: /zh-hant/sitemap-index-1.json
+  sitemap-zh-hant-2:
+    <<: *base-sitemap-2
+    target: /zh-hant/sitemap-index-2.json
+    include:
+      - '/zh-hant/**'
+    exclude:
+      - '/zh-hant/docs/workfront/**'
+      - '/zh-hant/docs/dynamic-media-developer-resources/**'
+      - '/zh-hant/docs/marketo/**'
+      - '/zh-hant/docs/experience-platform/**'
+      - '/zh-hant/docs/experience-manager-65/**'
+      - '/zh-hant/docs/experience-manager-64/**'
+      - '/zh-hant/docs/commerce-knowledge-base/**'
+      - '/zh-hant/docs/experience-cloud-kcs/**'
+      - '/zh-hant/docs/experience-manager-learn/**'
+      - '/zh-hant/docs/experience-manager-cloud-service/**'
+
+  playlists-en: &base-playlists
+    target: /en/playlists.json
+    include:
+      - '/en/playlists/**'
+    exclude:
+      - '/en/playlists'
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[property="og:description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, "content")
+      solution:
+        select: head > meta[name="solution"]
+        value: attribute(el, "content")
+      role:
+        select: head > meta[name="role"]
+        value: attribute(el, "content")
+      level:
+        select: head > meta[name="level"]
+        value: attribute(el, "content")
+
+  playlists-fr:
+    <<: *base-playlists
+    target: /fr/playlists.json
+    include:
+      - '/fr/playlists/**'
+    exclude:
+      - '/fr/playlists'
+
+  playlists-de:
+    <<: *base-playlists
+    target: /de/playlists.json
+    include:
+      - '/de/playlists/**'
+    exclude:
+      - '/de/playlists'
+
+  playlists-es:
+    <<: *base-playlists
+    target: /es/playlists.json
+    include:
+      - '/es/playlists/**'
+    exclude:
+      - '/es/playlists'
+
+  playlists-it:
+    <<: *base-playlists
+    target: /it/playlists.json
+    include:
+      - '/it/playlists/**'
+    exclude:
+      - '/it/playlists'
+
+  playlists-nl:
+    <<: *base-playlists
+    target: /nl/playlists.json
+    include:
+      - '/nl/playlists/**'
+    exclude:
+      - '/nl/playlists'
+
+  playlists-pt-br:
+    <<: *base-playlists
+    target: /pt-br/playlists.json
+    include:
+      - '/pt-br/playlists/**'
+    exclude:
+      - '/pt-br/playlists'
+
+  playlists-ko:
+    <<: *base-playlists
+    target: /ko/playlists.json
+    include:
+      - '/ko/playlists/**'
+    exclude:
+      - '/ko/playlists'
+
+  playlists-ja:
+    <<: *base-playlists
+    target: /ja/playlists.json
+    include:
+      - '/ja/playlists/**'
+    exclude:
+      - '/ja/playlists'
+
+  playlists-sv:
+    <<: *base-playlists
+    target: /sv/playlists.json
+    include:
+      - '/sv/playlists/**'
+    exclude:
+      - '/sv/playlists'
+
+  playlists-zh-hans:
+    <<: *base-playlists
+    target: /zh-hans/playlists.json
+    include:
+      - '/zh-hans/playlists/**'
+    exclude:
+      - '/zh-hans/playlists'
+
+  playlists-zh-hant:
+    <<: *base-playlists
+    target: /zh-hant/playlists.json
+    include:
+      - '/zh-hant/playlists/**'
+    exclude:
+      - '/zh-hant/playlists'
