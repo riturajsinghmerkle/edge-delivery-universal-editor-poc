@@ -1,5 +1,4 @@
 version: 1
-
 indices:
   site-en:
     include:
@@ -22,6 +21,3 @@ indices:
         select: head > meta[name="last-update"]
         value: |
           parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
-      robots:
-        select: head > meta[name="robots"]
-        value: attribute(el, "content")
