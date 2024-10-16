@@ -22,6 +22,6 @@ indices:
         value: |
           parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
       test:
-        select: body > footer > div > div > div > div: > p
+        select: body > footer > div > div > div > div > p
         value: |
           textContent(el)
