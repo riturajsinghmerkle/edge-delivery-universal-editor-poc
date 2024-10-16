@@ -21,3 +21,7 @@ indices:
         select: head > meta[name="last-update"]
         value: |
           parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
+      test:
+        select: header > div:nth-of-type(1) > p:nth-of-type(1)
+        value: |
+          textContent(el)
