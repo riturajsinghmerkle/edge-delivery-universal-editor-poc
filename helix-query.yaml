@@ -1,9 +1,9 @@
 version: 1
 
 indices:
-  site-en: &base-site
+  site-en:
     include:
-      - '/aem-xwalk/**'
+      - '**/us/**'
     target: /en/query-index.json
     properties:
       title:
