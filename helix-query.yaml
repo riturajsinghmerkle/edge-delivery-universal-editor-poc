@@ -21,7 +21,7 @@ indices:
         select: head > meta[name="last-update"]
         value: |
           parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
-      test:
+      testing:
         select: main > div[class="fragment"] > a:nth-of-type(1)
         value: |
           attribute(el, 'href')
