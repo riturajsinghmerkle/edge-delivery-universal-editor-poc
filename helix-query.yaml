@@ -22,6 +22,6 @@ indices:
         value: |
           parseTimestamp(attribute(el, "content"), 'ddd MMM DD YYYY hh:mm:ss GMT')
       test:
-        select: footer
+        select: main > div(class="fragment") > a
         value: |
-          attribute(el, 'class')
+          attribute(el, 'href')
