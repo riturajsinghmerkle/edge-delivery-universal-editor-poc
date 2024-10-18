@@ -57,5 +57,4 @@ export default function decorate(block) {
   iframe.style.border = 'none';
   block.textContent = '';
   block.append(iframe);
-  listenToMessages(iframe);
 }
