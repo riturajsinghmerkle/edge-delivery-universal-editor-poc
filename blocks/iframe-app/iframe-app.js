@@ -48,8 +48,8 @@ function listenToMessages(iframe) {
 }
 
 export default function decorate(block) {
-  const props = [...block.children].map((row) => row.firstElementChild);
-  const appUrl = props[0].textContent;
+  const link = block.querySelector('a');
+  const appUrl = link ? link.getAttribute('href') : block.textContent.trim();
   const iframe = document.createElement('iframe');
   iframe.src = appUrl;
   iframe.width = '100%';
