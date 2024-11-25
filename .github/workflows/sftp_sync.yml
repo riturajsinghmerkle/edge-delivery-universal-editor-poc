@@ -14,6 +14,13 @@ jobs:
       - name: Install LFTP
         run: sudo apt-get update && sudo apt-get install -y lftp
 
+      - name: Add SFTP server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H $SFTP_HOST >> ~/.ssh/known_hosts
+        env:
+          SFTP_HOST: celestyaldataplatform.blob.core.windows.net
+
       - name: Download folder from SFTP
         run: |
           mkdir -p sftp_data
